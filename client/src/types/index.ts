@@ -3,6 +3,7 @@ export interface FaucetInfo {
   tokenAddress: string;
   tokenSymbol: string;
   tokenName: string;
+  tokenLogo?: string;
   tokenBalance: string;
   nativeBalance: string;
   amountPerClaim: string;
@@ -34,4 +35,3 @@ export interface ClaimHistory {
   created_at: string;
   ip_address?: string;
 }
-

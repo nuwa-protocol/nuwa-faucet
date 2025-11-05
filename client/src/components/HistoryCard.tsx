@@ -37,51 +37,57 @@ export const HistoryCard = () => {
   };
 
   return (
-    <div className="card">
-      <h2 className="card-title">Recent Claims</h2>
-      
+    <div className="card history-card">
+      <div className="card-header">
+        <div>
+          <h2 className="card-title">Recent Claims</h2>
+          <p className="card-subtitle">Latest payouts fulfilled by the faucet. Updated every 15 seconds.</p>
+        </div>
+      </div>
+
       {loading && recentClaims.length === 0 ? (
         <div className="empty-state">
           <span className="loading"></span>
         </div>
       ) : recentClaims.length === 0 ? (
-        <div className="empty-state">No claim records yet</div>
+        <div className="empty-state">No claims yet. Be the first to request test USDC.</div>
       ) : (
-        <table className="history-table">
-          <thead>
-            <tr>
-              <th>Address</th>
-              <th>Time</th>
-              <th>Amount</th>
-              <th>Tx Hash</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentClaims.map((item) => (
-              <tr key={item.id}>
-                <td>{formatAddress(item.address)}</td>
-                <td>{formatTime(item.created_at || '')}</td>
-                <td>{item.amount}</td>
-                <td>
-                  {chainId ? (
-                    <a
-                      href={getExplorerUrl(item.tx_hash, chainId)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="tx-link"
-                    >
-                      {formatAddress(item.tx_hash)}
-                    </a>
-                  ) : (
-                    formatAddress(item.tx_hash)
-                  )}
-                </td>
+        <div className="history-table-wrapper">
+          <table className="history-table">
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Tx Hash</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {recentClaims.map((item) => (
+                <tr key={item.id}>
+                  <td>{formatAddress(item.address)}</td>
+                  <td>{formatTime(item.created_at || '')}</td>
+                  <td>{item.amount}</td>
+                  <td>
+                    {chainId ? (
+                      <a
+                        href={getExplorerUrl(item.tx_hash, chainId)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="tx-link"
+                      >
+                        {formatAddress(item.tx_hash)}
+                      </a>
+                    ) : (
+                      formatAddress(item.tx_hash)
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
 };
-
