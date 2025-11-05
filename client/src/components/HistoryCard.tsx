@@ -65,10 +65,10 @@ export const HistoryCard = () => {
             <tbody>
               {recentClaims.map((item) => (
                 <tr key={item.id}>
-                  <td>{formatAddress(item.address)}</td>
-                  <td>{formatTime(item.created_at || '')}</td>
-                  <td>{item.amount}</td>
-                  <td>
+                  <td data-label="Address">{formatAddress(item.address)}</td>
+                  <td data-label="Time">{formatTime(item.created_at || '')}</td>
+                  <td data-label="Amount">{item.amount}</td>
+                  <td data-label="Tx Hash">
                     {chainId ? (
                       <a
                         href={getExplorerUrl(item.tx_hash, chainId)}
