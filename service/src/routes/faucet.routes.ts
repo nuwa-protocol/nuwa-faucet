@@ -14,7 +14,7 @@ import {
   TOKEN_ADDRESS 
 } from '../config/blockchain';
 
-const router = Router();
+const router: Router = Router();
 
 // Request validation schema
 const claimSchema = z.object({
