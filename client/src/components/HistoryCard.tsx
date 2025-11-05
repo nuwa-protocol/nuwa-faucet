@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { faucetApi } from '../services/api';
-import type { ClaimHistory, FaucetInfo } from '../types';
-import { formatAddress, formatTime, getExplorerUrl } from '../utils/format';
+import { useEffect, useState } from "react";
+import { faucetApi } from "../services/api";
+import type { ClaimHistory, FaucetInfo } from "../types";
+import { formatAddress, formatTime, getExplorerUrl } from "../utils/format";
 
 export const HistoryCard = () => {
   const [recentClaims, setRecentClaims] = useState<ClaimHistory[]>([]);
@@ -20,7 +20,7 @@ export const HistoryCard = () => {
       const info: FaucetInfo = await faucetApi.getFaucetInfo();
       setChainId(info.chainId);
     } catch (error) {
-      console.error('Load faucet info error:', error);
+      console.error("Load faucet info error:", error);
     }
   };
 
@@ -30,7 +30,7 @@ export const HistoryCard = () => {
       const data = await faucetApi.getRecentClaims(5);
       setRecentClaims(data);
     } catch (error) {
-      console.error('Load recent claims error:', error);
+      console.error("Load recent claims error:", error);
     } finally {
       setLoading(false);
     }
@@ -41,7 +41,9 @@ export const HistoryCard = () => {
       <div className="card-header">
         <div>
           <h2 className="card-title">Recent Claims</h2>
-          <p className="card-subtitle">Latest payouts fulfilled by the faucet. Updated every 15 seconds.</p>
+          <p className="card-subtitle">
+            Latest payouts fulfilled by the faucet. Updated every 15 seconds.
+          </p>
         </div>
       </div>
 
@@ -50,7 +52,9 @@ export const HistoryCard = () => {
           <span className="loading"></span>
         </div>
       ) : recentClaims.length === 0 ? (
-        <div className="empty-state">No claims yet. Be the first to request test USDC.</div>
+        <div className="empty-state">
+          No claims yet. Be the first to request test USDC.
+        </div>
       ) : (
         <div className="history-table-wrapper">
           <table className="history-table">
@@ -66,7 +70,7 @@ export const HistoryCard = () => {
               {recentClaims.map((item) => (
                 <tr key={item.id}>
                   <td data-label="Address">{formatAddress(item.address)}</td>
-                  <td data-label="Time">{formatTime(item.created_at || '')}</td>
+                  <td data-label="Time">{formatTime(item.created_at || "")}</td>
                   <td data-label="Amount">{item.amount}</td>
                   <td data-label="Tx Hash">
                     {chainId ? (
