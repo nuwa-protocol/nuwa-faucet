@@ -1,0 +1,26 @@
+{
+  "name": "Nuwa USDC Faucet",
+  "short_name": "Nuwa Faucet",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0b1021",
+  "theme_color": "#605bff",
+  "description": "Claim free test USDC on the OKX X Layer Testnet with the Nuwa Faucet.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
