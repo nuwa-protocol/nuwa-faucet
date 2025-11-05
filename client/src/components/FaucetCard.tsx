@@ -10,6 +10,7 @@ export const FaucetCard = () => {
   const [isClaiming, setIsClaiming] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error' | 'warning'; text: string } | null>(null);
   const [countdown, setCountdown] = useState<string>('');
+  const [txHash, setTxHash] = useState<string>('');
 
   // Load faucet information
   useEffect(() => {
@@ -93,6 +94,7 @@ export const FaucetCard = () => {
           type: 'success',
           text: `Successfully claimed ${result.amount} ${faucetInfo?.tokenSymbol}! Tx Hash: ${result.txHash}`,
         });
+        setTxHash(result.txHash || '');
         checkClaimStatus();
         loadFaucetInfo();
       } else {
@@ -112,6 +114,7 @@ export const FaucetCard = () => {
   };
 
   const canClaim = address && isValidAddress(address) && claimStatus?.canClaim;
+  
 
   return (
     <div className="card faucet-card">
@@ -163,7 +166,8 @@ export const FaucetCard = () => {
 
         {message && (
           <div className={`claim-status ${message.type}`}>
-            {message.text}
+            {/* 0xb6a64b12c2aa6cb75fa1d14c62678982a9b4431d99b6c125cce90cbec6b08237 */}
+            <a href={`https://web3.okx.com/explorer/x-layer-testnet/tx/${txHash}`}>{message.text}</a>
           </div>
         )}
       </div>
