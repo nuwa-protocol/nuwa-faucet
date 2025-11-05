@@ -27,7 +27,7 @@ export const HistoryCard = () => {
   const loadRecentClaims = async () => {
     setLoading(true);
     try {
-      const data = await faucetApi.getRecentClaims(20);
+      const data = await faucetApi.getRecentClaims(5);
       setRecentClaims(data);
     } catch (error) {
       console.error('Load recent claims error:', error);
@@ -60,7 +60,7 @@ export const HistoryCard = () => {
             {recentClaims.map((item) => (
               <tr key={item.id}>
                 <td>{formatAddress(item.address)}</td>
-                <td>{formatTime(item.claimed_at)}</td>
+                <td>{formatTime(item.created_at || '')}</td>
                 <td>{item.amount}</td>
                 <td>
                   {chainId ? (

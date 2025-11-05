@@ -31,7 +31,7 @@ export interface ClaimHistory {
   address: string;
   amount: string;
   tx_hash: string;
-  claimed_at: string;
+  created_at: string;
   ip_address?: string;
 }
 
